@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Globals:
+  Function:
+    Timeout: 10
+
+Resources:
+  AutoApplyFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./AutoApply/
+      Handler: AutoApply::AutoApply.Function::FunctionHandler
+      Runtime: dotnetcore2.1
+      Events:
+        Apply:
+          Type: Api
+          Properties:
+            Path: /apply
+            Method: post
+
+Outputs:
+  AutoApplyApi:
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/apply/"
+  AutoApplyFunction:
+    Value: !GetAtt AutoApplyFunction.Arn
+  AutoApplyFunctionIamRole:
+    Value: !GetAtt AutoApplyFunctionRole.Arn

@@ -1,0 +1,10 @@
+﻿{
+  "profile":"",
+  "region" : "us-west-1",
+  "configuration": "Release",
+  "framework" : "netcoreapp2.1",
+  "function-runtime":"dotnetcore2.1",
+  "function-memory-size" : 1024,
+  "function-timeout" : 10,
+  "function-handler" : "AutoApply::AutoApply.Function::FunctionHandler"
+}
